@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'Maven3'
-        jdk 'JDK17'
+        jdk 'JDK21'
     }
 
     environment {
@@ -12,12 +12,6 @@ pipeline {
     }
 
     stages {
-
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/your-repo.git'
-            }
-        }
 
         stage('Clean Workspace') {
             steps {
@@ -63,19 +57,15 @@ pipeline {
     }
 
     post {
-
         always {
             archiveArtifacts artifacts: 'reports/**'
         }
-
         success {
             echo "Build Successful ✅"
         }
-
         failure {
             echo "Build Failed ❌"
         }
-
         cleanup {
             sh 'docker-compose down'
         }
