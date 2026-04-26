@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+
+  # Selenium Hub
+  selenium-hub:
+    image: selenium/hub:4.0
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+
+  # Chrome Node
+  chrome:
+    image: selenium/node-chrome:4.0
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+    shm_size: 2gb
+
+  # Firefox Node
+  firefox:
+    image: selenium/node-firefox:4.0
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+    shm_size: 2gb
+
+  # MySQL DB
+  mysql:
+    image: mysql:8.0
+    container_name: test-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb
+    ports:
+      - "3306:3306"
+
+  # Automation Container
+  automation:
+    build: .
+    depends_on:
+      - selenium-hub
+      - mysql
+    environment:
+      - ENV=qa
+    command: mvn test

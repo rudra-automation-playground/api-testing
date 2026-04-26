@@ -1,0 +1,1 @@
+{"uuid":"c63ad71d-1bb0-41c4-b169-1b7ec601173d","name":"Surefire suite","children":["ec3c6c63-6098-4374-a72e-bc91635343ef"],"befores":[{"name":"validateAPIContract","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1775810354137,"stop":1775810354209}],"afters":[],"start":1775810354125,"stop":1775810354296}
