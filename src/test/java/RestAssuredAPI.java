@@ -70,7 +70,7 @@ public class RestAssuredAPI {
         System.out.println("Remote IP: " + address.getHostAddress());
 
         List<String> expectedStatuses = Arrays.asList("available", "pending", "sold");
-     //   List<String> actualStatuses = response.jsonPath().getList("data.status");
+        List<String> actualStatuses = response.jsonPath().getList("data.status");
       //  Assert.assertTrue(actualStatuses.size() >= 2, "Not enough elements in actual list");
 //        Assert.assertEquals(actualStatuses.subList(0, 2), expectedStatuses);
 
